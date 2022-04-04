@@ -20,7 +20,7 @@ public class BackendApplication {
 
     @GetMapping("/hello")
     public String hello(){
-        return "Hello";
+        return "hello";
     }
 
 
