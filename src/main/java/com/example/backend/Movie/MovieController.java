@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class MovieController {
 
@@ -33,6 +35,11 @@ public class MovieController {
         return movieService.getMovieById(id);
     }
 
+    @GetMapping ("/getAllMovieById")
+    public ArrayList<Movie> getAllMovieById(){
+        return movieService.getAllMovieById();
+    }
+
     @GetMapping("/updateMovie")
     public void updateMovie(@RequestParam(value = "name", defaultValue = "No name")String name,
                             @RequestParam(value = "image", defaultValue = "No image")String image,
@@ -41,5 +48,6 @@ public class MovieController {
                             @RequestParam(value = "id", defaultValue = "0")int id){
         movieService.updateMovie(name, image, description, length, id);
     }
+
     //Hej
 }
