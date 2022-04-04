@@ -14,23 +14,31 @@ public class CustomerDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public Customer getCustomerByUsername(String user_name) {
-        String query = "SELECT * FROM movie.customer WHERE user_name =?";
+    public boolean getCustomerByUsername(String user_name, String password) {
+        String query = "SELECT * FROM movie.customer WHERE user_name =? AND password =?";
 
-        Customer customer = jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
+        try {
+             Customer customer = jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
 
-            @Override
-            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Customer cus = new Customer(rs.getInt("customer_id"),
-                        rs.getString("customer_firstName"),
-                        rs.getString("customer_lastName"),
-                        rs.getString("customer_user_name"),
-                        rs.getString("customer_password"));
-                return cus;
-            }
-        },user_name);
+                    @Override
+                    public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Customer cus = new Customer(rs.getInt("id"),
+                                rs.getString("firstName"),
+                                rs.getString("lastName"),
+                                rs.getString("user_name"),
+                                rs.getString("password"));
+                        return cus;
+                    }
+                }, user_name, password);
 
-        return customer;
+             return true;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return false;
     }
-
 }
+
+
