@@ -1,21 +1,33 @@
-package com.example.backend;
+package Ticket;
 
 public class Ticket {
     private int idTicket;
     private double price;
-    private int custumer_id;
+    private int costumer_id;
     private int idSeat;
     private String time;
     private int movie_id;
     private int idSalon;
     private int seats_id;
 
+    public Ticket(int idTicket, double price, int costumer_id, int idSeat, String time,
+                  int movie_id, int idSalon, int seats_id) {
+        this.idTicket = idTicket;
+        this.price = price;
+        this.costumer_id = costumer_id;
+        this.idSeat = idSeat;
+        this.time = time;
+        this.movie_id = movie_id;
+        this.idSalon = idSalon;
+        this.seats_id = seats_id;
+    }
+
     @Override
     public String toString() {
         return "Ticket{" +
                 "idTicket=" + idTicket +
                 ", price=" + price +
-                ", custumer_id=" + custumer_id +
+                ", custumer_id=" + costumer_id +
                 ", idSeat=" + idSeat +
                 ", time='" + time + '\'' +
                 ", movie_id=" + movie_id +
@@ -40,12 +52,12 @@ public class Ticket {
         this.price = price;
     }
 
-    public int getCustumer_id() {
-        return custumer_id;
+    public int getCostumer_id() {
+        return costumer_id;
     }
 
-    public void setCustumer_id(int custumer_id) {
-        this.custumer_id = custumer_id;
+    public void setCostumer_id(int costumer_id) {
+        this.costumer_id = costumer_id;
     }
 
     public int getIdSeat() {

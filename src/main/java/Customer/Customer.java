@@ -1,10 +1,6 @@
-package com.example.backend;
-
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
+package Customer;
 
 public class Customer {
-
     private int id;
     private String firstName;
     private String lastName;
