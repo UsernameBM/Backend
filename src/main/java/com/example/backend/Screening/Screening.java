@@ -25,7 +25,7 @@ public class Screening {
         this.time = time;
     }
 
-    public int getMovieId() { //getting movie
+    public int getMovieId() { //getting movie rerrer
         return movieId;
     }
 
