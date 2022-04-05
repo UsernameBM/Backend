@@ -22,6 +22,4 @@ public class BackendApplication {
     public String hello(){
         return "hello";
     }
-
-
 }
