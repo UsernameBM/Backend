@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-
 public class BackendApplication {
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -22,4 +22,6 @@ public class BackendApplication {
     public String hello(){
         return "hello";
     }
+
+
 }
