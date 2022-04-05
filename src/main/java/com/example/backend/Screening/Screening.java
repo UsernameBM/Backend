@@ -17,7 +17,7 @@ public class Screening {
         this.idSalon = idSalon;
     }
 
-    public String getTime() {
+    public String getTime() { //getting time
         return time;
     }
 
