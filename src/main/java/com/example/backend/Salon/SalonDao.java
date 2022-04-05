@@ -17,7 +17,7 @@ public class SalonDao {
         private JdbcTemplate jdbcTemplate;
 
         public void insertSalon(int seats, int row, String cinemaName) {
-                String query = "INSERT INTO salon (seats, row, cinema_name) VALUES(?,?,?)"; //insert values to the database
+                String query = "INSERT INTO salon (seats, `row`, cinema_name) VALUES(?,?,?)"; //insert values to the database
 
                 int result = jdbcTemplate.update(query, seats, row, cinemaName);
 

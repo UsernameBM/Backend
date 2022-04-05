@@ -17,7 +17,7 @@ public class ScreeningDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void insertScreening(Time time, int movieId, int idSalon){
+    public void insertScreening(String time, int movieId, int idSalon){
 
         String query = "INSERT INTO screening (time, movie_id, idSalon) VALUES(?,?,?)";
 
@@ -33,7 +33,7 @@ public class ScreeningDao {
         Screening screening = jdbcTemplate.queryForObject(query, new RowMapper<Screening>() {
             @Override
             public Screening mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Screening screen = new Screening (rs.getTime("time"),
+                Screening screen = new Screening (rs.getString("time"),
                         rs.getInt("movie_id"),
                         rs.getInt("idSalon")
                         );

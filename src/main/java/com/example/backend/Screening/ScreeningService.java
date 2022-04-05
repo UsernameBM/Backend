@@ -10,8 +10,10 @@ public class ScreeningService {
     @Autowired
     ScreeningDao screeningDao;
 
-    public void insertScreening(Screening screening){
+    public String insertScreening(Screening screening){
+        String salonAdded = "Your Salon has been added to the database with following Salon information: ";
         screeningDao.insertScreening(screening.getTime(), screening.getMovieId(), screening.getIdSalon());
+        return salonAdded + " " + screening.getTime() + " " + screening.getMovieId() + " " + screening.getIdSalon();
     }
 
     public Screening getScreeningById(String id){

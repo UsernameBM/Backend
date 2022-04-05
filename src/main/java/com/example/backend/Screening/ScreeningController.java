@@ -1,6 +1,7 @@
 package com.example.backend.Screening;
 
 
+import com.example.backend.Salon.Salon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ScreeningController {
 
     @Autowired
-     ScreeningService screeningService;
+    ScreeningService screeningService;
 
     public ScreeningController(ScreeningService screeningService) {
         this.screeningService = screeningService;
@@ -21,4 +22,14 @@ public class ScreeningController {
         return screeningService.getScreeningById(id);
     }
 
+    @GetMapping("/addScreening")
+    public String addScreening(@RequestParam(value = "time") String time, @RequestParam(value = "movieId") int movieId,
+                               @RequestParam(value = "idSalon") int idSalon) {
+
+
+        Screening screening = new Screening(time, movieId, idSalon);
+        return screeningService.insertScreening(screening);
+
+
+    }
 }

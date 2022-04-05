@@ -15,8 +15,19 @@ public class SalonController {
     public SalonController(SalonService salonService){this.salonService = salonService;}
 
     @GetMapping("/requestSalon")
-    public Salon findSalon(@RequestParam(value = "id") String id){
+    public Salon findSalon(@RequestParam(value = "id") String id) {
         return salonService.getSalonById(id);
     }
-}
+
+        @GetMapping("/addSalon")
+                public String addSalon(@RequestParam(value = "seats") int seats, @RequestParam(value = "row") int row,
+                                      @RequestParam(value = "cinemaName") String cinemaName) {
+                         int idSalon = 0;
+
+           Salon salon = new Salon(idSalon, seats, row, cinemaName);
+                  return salonService.insertSalon(salon);
+
+        }
+    }
+
 

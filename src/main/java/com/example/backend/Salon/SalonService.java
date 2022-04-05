@@ -10,9 +10,16 @@ public class SalonService {
     @Autowired
     SalonDao salonDao;
 
-    public void insertSalon (Salon salon){
 
+
+
+
+    public String insertSalon (Salon salon){
+
+        String salonAdded = "Your Salon has been added to the database with following Salon information: ";
         salonDao.insertSalon(salon.getSeats(), salon.getRow(), salon.getCinemaName());
+        return salonAdded + " " + salon.getSeats() + " " + salon.getRow() + " " + salon.getCinemaName();
+
     }
 
     public Salon getSalonById(String id){
