@@ -15,9 +15,12 @@ public class BackendApplication {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-
-    public static void main(String[] args) {SpringApplication.run(BackendApplication.class, args);}
+    public static void main(String[] args) {
+        SpringApplication.run(BackendApplication.class, args);
+    }
     @GetMapping("/hello")
-    public String hello(){return "hello";}
+    public String hello(){
+        return "Hello";
+    }
 
 }
