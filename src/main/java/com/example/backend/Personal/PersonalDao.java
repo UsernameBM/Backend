@@ -15,7 +15,7 @@ public class PersonalDao {
     private JdbcTemplate jdbcTemplate;
 
    public Personal getPersonalByUsername(String user_name){
-       String query = "SELECT * FROM personal WHERE user_name= ?";
+       String query = "SELECT * FROM movie.personal WHERE user_name= ?";
 
        Personal personal = jdbcTemplate.queryForObject(query, new RowMapper<Personal>() {
            @Override
