@@ -1,4 +1,4 @@
-package Customer;
+package com.example.backend.Customer;
 
 public class Customer {
     private int id;

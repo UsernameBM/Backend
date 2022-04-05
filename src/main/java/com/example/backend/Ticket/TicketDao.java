@@ -1,6 +1,5 @@
-package Ticket;
+package com.example.backend.Ticket;
 
-import Customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

@@ -28,7 +28,6 @@ public class MovieService {
     public ArrayList<Movie> getAllMovieById() {
         movies = movieDao.getAllMovieById();
         return  movies;
-
     }
 
 

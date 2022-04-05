@@ -1,6 +1,5 @@
-package Customer;
+package com.example.backend.Customer;
 
-import com.example.backend.Movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,4 +1,4 @@
-package Ticket;
+package com.example.backend.Ticket;
 
 public class Ticket {
     private int idTicket;
