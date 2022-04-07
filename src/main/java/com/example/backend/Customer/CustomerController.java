@@ -22,6 +22,23 @@ public class CustomerController {
         customer = customerService.getCustomerByUsernameAndPassword(user_name,password);
         return customer;
     }
+
+    @GetMapping("/addCustomer")
+    public Customer addCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
+                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
+        customer = customerService.addCustomer(firstName,lastName, user_name, password);
+        return customer;
+    }
+
+    @GetMapping("/verifyCustomerUsername")
+    public Customer verifyUsername(@RequestParam(value = "username") String user_name) {
+        customer = customerService.verifyUsername(user_name);
+        return customer;
+    }
+
+    // /VERIFYPASSWORD
+    // change information
+
 }
 
    /** @GetMapping("/verifyLogin")

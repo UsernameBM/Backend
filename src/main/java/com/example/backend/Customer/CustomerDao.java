@@ -30,6 +30,52 @@ public class CustomerDao {
         }, user_name, password);
         return customer;
     }
+
+    public Customer addCustomer(String firstName, String lastname, String user_name,
+                                String password) {
+        String query = "INSERT INTO movie.customer (firstName, lastName, user_name, password) VALUES (?, ?, ?, ?)";
+
+        Customer customer = jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
+            @Override
+            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Customer cus = new Customer(rs.getInt("id"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("user_name"),
+                        rs.getString("password"));
+                return cus;
+            }
+        }, firstName, lastname, user_name, password);
+
+        return customer;
+    }
+
+
+    //BOOLEAN?? OM ETT ANVÄNDARNAMN ÄR REGISTRERAT (finns i databasen) ska man inte kunna registrera den användaren igen. Utan välja ett nytt användarnamn
+    public Customer verifyUsername(String user_name) {
+
+
+        String query = "SELECT EXISTS (SELECT user_name FROM movie.customer WHERE user_name = ?)";
+
+        Customer customer = jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
+            @Override
+            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Customer cus = new Customer(rs.getInt("id"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("user_name"),
+                        rs.getString("password"));
+                return cus;
+            }
+        }, user_name);
+
+        return customer;
+    }
+
 }
+
+
+
+
 
 

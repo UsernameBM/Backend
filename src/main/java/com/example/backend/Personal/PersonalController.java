@@ -19,4 +19,9 @@ public class PersonalController {
     public Personal getPersonalByUsername(@RequestParam(value = "user_name", defaultValue = "No name")String user_name){
         return personalService.getPersonalByUsername(user_name);
     }
+
+    // addPersonal
+    // verify username
+    // verify password
+    // change information
 }
