@@ -18,10 +18,10 @@ public class MovieDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void insertMovie(String name, String image, String description, String length) {
-        String query = "INSERT INTO movie (name, image, description, length) VALUES(?,?,?,?)";
+    public void insertMovie(String name, String description, String length) {
+        String query = "INSERT INTO movie (name, description, length) VALUES(?,?,?,?)";
 
-        int result = jdbcTemplate.update(query, name, image, description, length);
+        int result = jdbcTemplate.update(query, name, description, length);
 
         if (result > 0) {
             System.out.println(result + " movie has been added!");
@@ -48,7 +48,6 @@ public class MovieDao {
             public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Movie mov = new Movie(rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("image"),
                         rs.getString("description"),
                         rs.getString("length"));
                 return mov;
@@ -66,7 +65,6 @@ public class MovieDao {
             Movie movie = new Movie(
                     (int) row.get("id"),
                     String.valueOf(row.get("name")),
-                    String.valueOf(row.get("image")),
                     String.valueOf(row.get("description")),
                     String.valueOf(row.get("length")));
             movies.add(movie);
@@ -75,10 +73,10 @@ public class MovieDao {
     }
 
 
-    public void updateMovie(String name, String image, String description, String length, int id){
-        String query = "UPDATE movie SET name =?, image =?, description =?, length =? WHERE (id =?)";
+    public void updateMovie(String name, String description, String length, int id){
+        String query = "UPDATE movie SET name =?, description =?, length =? WHERE (id =?)";
 
-        int result = jdbcTemplate.update(query, name, image, description, length, id);
+        int result = jdbcTemplate.update(query, name, description, length, id);
 
         if(result > 0){
             System.out.println(result + "movie has been updated!");

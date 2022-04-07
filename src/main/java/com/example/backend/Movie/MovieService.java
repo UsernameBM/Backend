@@ -13,8 +13,8 @@ public class MovieService {
     Movie movie;
     ArrayList<Movie> movies;
 
-    public void insertMovie(String name, String image, String description, String length){
-        movieDao.insertMovie(name, image, description, length);
+    public void insertMovie(String name, String description, String length){
+        movieDao.insertMovie(name, description, length);
     }
 
     public void deleteMovie(int id){
@@ -31,7 +31,7 @@ public class MovieService {
     }
 
 
-    public void updateMovie(String name, String image, String description, String length, int id){
-        movieDao.updateMovie(name, image, description, length, id);
+    public void updateMovie(String name, String description, String length, int id){
+        movieDao.updateMovie(name, description, length, id);
     }
 }
