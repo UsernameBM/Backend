@@ -23,7 +23,7 @@ public class CustomerController {
         return customer;
     }
 
-    //Funkar ej som fungerat
+    //Funkar ej som planerat
     @GetMapping("/addCustomer")
     public Customer addCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
                                 @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
