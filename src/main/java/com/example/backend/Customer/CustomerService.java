@@ -15,6 +15,7 @@ public class CustomerService {
         return customer;
     }
 
+    //Funkar ej som planerat
     public Customer addCustomer(String firstname, String lastname, String user_name, String password) {
         customer = customerDao.addCustomer(firstname, lastname, user_name, password);
         return customer;
@@ -23,5 +24,9 @@ public class CustomerService {
     public Customer verifyUsername(String user_name) {
         customer = customerDao.verifyUsername(user_name);
         return customer;
+    }
+
+    public void insertCustomer(String firstname, String lastname, String user_name, String password){
+        customerDao.insertCustomer(firstname, lastname, user_name, password);
     }
 }

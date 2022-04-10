@@ -19,7 +19,7 @@ public class PersonalScheduleService {
         return personalSchedules;
     }
 
-    public void insertPersonalSchedule(String date, int idUser, int idSalon, String Kassa, String Kitchen){
-        personalScheduleDao.insertPersonalSchedule(date, idUser, idSalon, Kassa, Kitchen);
+    public void insertPersonalSchedule(String date, int idUser, int idSalon, String Counter, String Kitchen){
+        personalScheduleDao.insertPersonalSchedule(date, idUser, idSalon, Counter, Kitchen);
     }
 }

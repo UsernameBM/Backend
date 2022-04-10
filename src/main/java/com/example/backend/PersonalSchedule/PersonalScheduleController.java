@@ -26,8 +26,8 @@ public class PersonalScheduleController {
     public void insertPersonalSchedule(@RequestParam(value = "date", defaultValue = "No date")String date,
                             @RequestParam(value = "idUser", defaultValue = "No user")int idUser,
                             @RequestParam(value = "idSalon", defaultValue = "No salon")int idSalon,
-                            @RequestParam(value = "Kassa")String Kassa,
+                            @RequestParam(value = "Counter")String Counter,
                             @RequestParam(value = "Kitchen")String Kitchen){
-        personalScheduleService.insertPersonalSchedule(date, idUser, idSalon, Kassa, Kitchen);
+        personalScheduleService.insertPersonalSchedule(date, idUser, idSalon, Counter, Kitchen);
     }
 }

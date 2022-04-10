@@ -4,14 +4,14 @@ public class PersonalSchedule {
     private String date;
     private int idUser;
     private int idSalon;
-    private String Kassa;
+    private String Counter;
     private String Kitchen;
 
-    public PersonalSchedule(String date, int idUser, int idSalon, String kassa, String kitchen) {
+    public PersonalSchedule(String date, int idUser, int idSalon, String Counter, String kitchen) {
         this.date = date;
         this.idUser = idUser;
         this.idSalon = idSalon;
-        Kassa = kassa;
+        this.Counter = Counter;
         Kitchen = kitchen;
     }
 
@@ -39,12 +39,12 @@ public class PersonalSchedule {
         this.idSalon = idSalon;
     }
 
-    public String getKassa() {
-        return Kassa;
+    public String getCounter() {
+        return Counter;
     }
 
-    public void setKassa(String kassa) {
-        Kassa = kassa;
+    public void setCounter(String counter) {
+        Counter = counter;
     }
 
     public String getKitchen() {

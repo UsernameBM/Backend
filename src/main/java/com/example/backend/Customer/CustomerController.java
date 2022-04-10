@@ -23,6 +23,7 @@ public class CustomerController {
         return customer;
     }
 
+    //Funkar ej som fungerat
     @GetMapping("/addCustomer")
     public Customer addCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
                                 @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
@@ -30,10 +31,21 @@ public class CustomerController {
         return customer;
     }
 
+    @GetMapping("/insertCustomer")
+    public void insertCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
+                               @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
+        customerService.insertCustomer(firstName, lastName, user_name, password);
+    }
+
+
     @GetMapping("/verifyCustomerUsername")
-    public Customer verifyUsername(@RequestParam(value = "username") String user_name) {
+    public String verifyUsername(@RequestParam(value = "username") String user_name) {
         customer = customerService.verifyUsername(user_name);
-        return customer;
+        if(!(customer == null)){
+            return "Customer exist";
+        } else {
+            return "Customer doesnt exist";
+        }
     }
 
     // /VERIFYPASSWORD
