@@ -14,8 +14,8 @@ public class CustomerDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public Customer getCustomerByUsernamePassword(String user_name, String password) {
-        String query = "SELECT * FROM movie.customer WHERE user_name= ? AND password=?";
+    public Customer getCustomerByUsername(String user_name) {
+        String query = "SELECT * FROM movie.customer WHERE user_name= ?";
 
         Customer customer = jdbcTemplate.queryForObject(query, new RowMapper<Customer>() {
             @Override
@@ -27,7 +27,7 @@ public class CustomerDao {
                         rs.getString("password"));
                 return cus;
             }
-        }, user_name, password);
+        }, user_name);
         return customer;
     }
 }

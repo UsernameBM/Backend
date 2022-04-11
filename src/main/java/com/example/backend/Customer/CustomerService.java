@@ -8,10 +8,10 @@ public class CustomerService {
 
     @Autowired
     CustomerDao customerDao;
-    Customer customer;
 
-    public Customer getCustomerByUsernameAndPassword(String user_name, String password) {
-        customer = customerDao.getCustomerByUsernamePassword(user_name, password);
-        return customer;
+
+    public Customer getCustomerByUsername(String user_name) {
+        return customerDao.getCustomerByUsername(user_name);
+
     }
 }
