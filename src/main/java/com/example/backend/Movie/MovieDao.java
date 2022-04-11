@@ -19,7 +19,7 @@ public class MovieDao {
     private JdbcTemplate jdbcTemplate;
 
     public void insertMovie(String name, String description, String length) {
-        String query = "INSERT INTO movie (name, description, length) VALUES(?,?,?,?)";
+        String query = "INSERT INTO movie (name, description, length) VALUES(?,?,?)";
 
         int result = jdbcTemplate.update(query, name, description, length);
 
