@@ -36,7 +36,7 @@ public class CustomerController {
                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
         customerService.insertCustomer(firstName, lastName, user_name, password);
     }
-
+    //test
 
     @GetMapping("/verifyCustomerUsername")
     public String verifyUsername(@RequestParam(value = "username") String user_name) {
