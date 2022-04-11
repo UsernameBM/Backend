@@ -8,6 +8,7 @@ public class CustomerService {
 
     @Autowired
     CustomerDao customerDao;
+    Customer customer;
 
 
     public Customer getCustomerByUsername(String user_name) {
