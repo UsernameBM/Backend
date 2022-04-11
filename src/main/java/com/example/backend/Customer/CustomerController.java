@@ -26,7 +26,7 @@ public class CustomerController {
         return customer;
     }
 
-    @GetMapping("/authorize")
+    @GetMapping("/authorize")    //kollar ifall kund finns i databasen
     public String authenticateCustomer(@RequestParam(value="username") String username, @RequestParam(value ="password") String password) {
         Customer c = customerService.getCustomerByUsername(username);
         if (c.getPassword().equals(password)) {
