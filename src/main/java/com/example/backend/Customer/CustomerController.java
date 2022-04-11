@@ -53,6 +53,22 @@ public class CustomerController {
         return jwHandler.validateToken(token);
     }
 
+    @GetMapping("/insertCustomer")
+    public void insertCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
+                               @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
+        customerService.insertCustomer(firstName, lastName, user_name, password);
+    }
+
+    @GetMapping("/verifyCustomerUsername")
+    public String verifyUsername(@RequestParam(value = "username") String user_name) {
+        customer = customerService.verifyUsername(user_name);
+        if(!(customer == null)){
+            return "Customer exist";
+        } else {
+            return "Customer doesnt exist";
+        }
+    }
+
 
 }
 
