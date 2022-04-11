@@ -19,10 +19,9 @@ public class MovieController {
 
     @GetMapping("/insertMovie")
     public void insertMovie(@RequestParam(value = "name", defaultValue = "No name")String name,
-                            @RequestParam(value = "image", defaultValue = "No image")String image,
                             @RequestParam(value = "description", defaultValue = "No description")String description,
                             @RequestParam(value = "length", defaultValue = "No length")String length){
-        movieService.insertMovie(name, image, description, length);
+        movieService.insertMovie(name, description, length);
     }
 
     @GetMapping("/deleteMovie")
@@ -42,11 +41,10 @@ public class MovieController {
 
     @GetMapping("/updateMovie")
     public void updateMovie(@RequestParam(value = "name", defaultValue = "No name")String name,
-                            @RequestParam(value = "image", defaultValue = "No image")String image,
                             @RequestParam(value = "description", defaultValue = "No description")String description,
                             @RequestParam(value = "length", defaultValue = "No length")String length,
                             @RequestParam(value = "id", defaultValue = "0")int id){
-        movieService.updateMovie(name, image, description, length, id);
+        movieService.updateMovie(name, description, length, id);
     }
 
     //Hej
