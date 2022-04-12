@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ScreeningDao {
@@ -42,6 +45,19 @@ public class ScreeningDao {
         },id);
 
         return screening;
-
 }
+
+    public ArrayList<Screening> getAllScreening(){
+        String query = "SELECT * FROM screening";
+        ArrayList<Screening> screenings = new ArrayList<>();
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
+
+        for (Map<String, Object> row : rows){
+            Screening screening = new Screening(String.valueOf(row.get("time")),
+                    (int) row.get("movie_id"),
+                    (int) row.get("idSalon"));
+            screenings.add(screening);
+        }
+        return screenings;
+    }
 }

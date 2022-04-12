@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 @RestController
 public class SalonController {
 
@@ -19,15 +22,20 @@ public class SalonController {
         return salonService.getSalonById(id);
     }
 
-        @GetMapping("/addSalon")
-                public String addSalon(@RequestParam(value = "seats") int seats, @RequestParam(value = "row") int row,
-                                      @RequestParam(value = "cinemaName") String cinemaName) {
-                         int idSalon = 0;
+    @GetMapping("/addSalon")
+    public String addSalon(@RequestParam(value = "seats") int seats, @RequestParam(value = "row") int row,
+                           @RequestParam(value = "cinemaName") String cinemaName) {
+        int idSalon = 0;
 
-           Salon salon = new Salon(idSalon, seats, row, cinemaName);
-                  return salonService.insertSalon(salon);
+        Salon salon = new Salon(idSalon, seats, row, cinemaName);
+        return salonService.insertSalon(salon);
 
-        }
     }
+
+    @GetMapping("/getAllSalons")
+    public ArrayList<Salon> getAllSalons(){
+        return salonService.getAllSalons();
+    }
+}
 
 
