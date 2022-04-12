@@ -7,28 +7,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CustomerController {
+    public static JWCustomerHandler jwHandler = new JWCustomerHandler();
 
     @Autowired
     CustomerService customerService;
     Customer customer;
+
+
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
     @GetMapping("/getCustomer")
-    public Customer getCustomerByUsernamePassword(@RequestParam(value = "user_name") String user_name,
-                                                  @RequestParam(value = "password") String password) {
-        customer = customerService.getCustomerByUsernameAndPassword(user_name,password);
+    public Customer getCustomerByUsernamePassword(@RequestParam(value = "user_name") String user_name)
+                                                   {
+        customer = customerService.getCustomerByUsername(user_name);
         return customer;
     }
 
-    //Funkar ej som fungerat
-    @GetMapping("/addCustomer")
-    public Customer addCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
-                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
-        customer = customerService.addCustomer(firstName,lastName, user_name, password);
-        return customer;
+    @GetMapping("/authorize")    //kollar ifall kund finns i databasen
+    public String authenticateCustomer(@RequestParam(value="username") String username, @RequestParam(value ="password") String password) {
+        Customer c = customerService.getCustomerByUsername(username);
+        if (c.getPassword().equals(password)) {
+            String token = jwHandler.generateToken(c);
+            return "right password";
+
+        }else if (!c.getPassword().equals(password)) {
+            return "wrong password or username";
+
+        }
+        return "wrong password or username";
+    }
+
+
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+
+
+    }
+    @GetMapping("/checkToken")
+    public String checkToken(@RequestParam(value = "token") String token){
+        return jwHandler.validateToken(token);
     }
 
     @GetMapping("/insertCustomer")
@@ -36,7 +58,6 @@ public class CustomerController {
                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
         customerService.insertCustomer(firstName, lastName, user_name, password);
     }
-
 
     @GetMapping("/verifyCustomerUsername")
     public String verifyUsername(@RequestParam(value = "username") String user_name) {
@@ -48,25 +69,8 @@ public class CustomerController {
         }
     }
 
-    // /VERIFYPASSWORD
-    // change information
 
 }
 
-   /** @GetMapping("/verifyLogin")
-    public String getCustomerbyUsername(@RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
-        boolean customerExist = customerDao.getCustomerByUsername(user_name,password);
-        String customer = Boolean.toString(customerExist);
 
-        return customer;
-    }
-
-    @GetMapping("/cancelLogin")
-    public boolean getCustomerByUsername(@RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
-        boolean customerNotExist = !customerDao.getCustomerByUsername(user_name,password);
-        System.out.println(customerNotExist);
-
-        return customerNotExist;
-    }
-} **/
 

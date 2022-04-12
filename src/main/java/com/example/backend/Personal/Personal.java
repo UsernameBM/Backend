@@ -2,6 +2,8 @@ package com.example.backend.Personal;
 
 public class Personal {
     private int idUser;
+    private String firstname;
+    private String lastname;
     private String tel_number;
     private String email;
     private String bank;
@@ -10,8 +12,10 @@ public class Personal {
     private String password;
     private String cinema_name;
 
-    public Personal(int idUser, String tel_number, String email, String bank, String banknummer, String user_name, String password, String cinema_name) {
+    public Personal(int idUser, String firstname, String lastname, String tel_number, String email, String bank, String banknummer, String user_name, String password, String cinema_name) {
         this.idUser = idUser;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.tel_number = tel_number;
         this.email = email;
         this.bank = bank;
@@ -27,6 +31,22 @@ public class Personal {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getTel_number() {
