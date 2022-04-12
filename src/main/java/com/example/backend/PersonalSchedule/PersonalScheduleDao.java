@@ -21,6 +21,7 @@ public class PersonalScheduleDao {
 
         for (Map<String, Object> row : rows) {
             PersonalSchedule personalSchedule = new PersonalSchedule(
+                    (int)row.get("id"),
                     String.valueOf(row.get("date")),
                     (int)row.get("idUser"),
                     (int)row.get("idSalon"),
