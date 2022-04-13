@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class ScreeningController {
 
@@ -31,5 +33,10 @@ public class ScreeningController {
         return screeningService.insertScreening(screening);
 
 
+    }
+
+    @GetMapping("/getAllScreening")
+    public ArrayList<Screening> getAllScreening(){
+        return screeningService.getAllScreening();
     }
 }
