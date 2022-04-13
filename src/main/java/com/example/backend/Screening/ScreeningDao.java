@@ -45,7 +45,8 @@ public class ScreeningDao {
         },id);
 
         return screening;
-}
+
+    }
 
     public ArrayList<Screening> getAllScreening(){
         String query = "SELECT * FROM screening";
