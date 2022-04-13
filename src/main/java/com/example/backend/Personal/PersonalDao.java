@@ -37,7 +37,7 @@ public class PersonalDao {
    }
 
    public void insertPersonal(String firstname, String lastname, String tel_number, String email, String bank, String banknumber,String user_name,String password, String Cinema_name){
-       String query = "INSERT INTO personal (firstname, lastname, tel_number, email, bank, banknumber, user_name, password, Cinema_name) VALUES(?,?,?,?,?,?,?)";
+       String query = "INSERT INTO personal (firstname, lastname, tel_number, email, bank, banknumber, user_name, password, Cinema_name) VALUES(?,?,?,?,?,?,?,?,?)";
 
        int result = jdbcTemplate.update(query, firstname, lastname, tel_number, email, bank, banknumber, user_name ,password, Cinema_name);
        if (result > 0) {
