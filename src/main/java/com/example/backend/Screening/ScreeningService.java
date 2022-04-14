@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import java.sql.SQLException;
+
 @Service
 public class ScreeningService {
 
@@ -25,8 +27,12 @@ public class ScreeningService {
                 return screening;
     }
 
-    public ArrayList<Screening> getAllScreening(){
-        screenings = screeningDao.getAllScreening();
+    /** public ArrayList<Screening> getAllScreening(){
+        screenings = screeningDao.getScreening();
         return screenings;
     }
+
+    public void selectMovieTime(String time, int movie_id) throws SQLException {
+        ScreeningDao.selectMovieTime(time, movie_id);
+    } **/
 }

@@ -3,6 +3,8 @@ package com.example.backend.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+
 @Service
 public class CustomerService {
 
@@ -10,24 +12,16 @@ public class CustomerService {
     CustomerDao customerDao;
     Customer customer;
 
-
     public Customer getCustomerByUsername(String user_name) {
         return customerDao.getCustomerByUsername(user_name);
-
     }
 
-    //Funkar ej som planerat
-    public Customer addCustomer(String firstname, String lastname, String user_name, String password) {
-        customer = customerDao.addCustomer(firstname, lastname, user_name, password);
-        return customer;
+    public void addCustomer(String firstname, String lastname, String user_name, String password) {
+        customerDao.addCustomer(firstname, lastname, user_name, password);
     }
 
-    public Customer verifyUsername(String user_name) {
-        customer = customerDao.verifyUsername(user_name);
-        return customer;
+    public void verifyUsername(String user_name) throws SQLException {
+      customerDao.verifyUsername(user_name);
     }
 
-    public void insertCustomer(String firstname, String lastname, String user_name, String password){
-        customerDao.insertCustomer(firstname, lastname, user_name, password);
-    }
 }

@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ScreeningDao {
@@ -22,7 +19,7 @@ public class ScreeningDao {
 
     public void insertScreening(String time, int movieId, int idSalon){
 
-        String query = "INSERT INTO screening (time, movie_id, idSalon) VALUES(?,?,?)";
+        String query = "INSERT INTO movie.screening (time, movie_id, idSalon) VALUES(?,?,?)";
 
         int result = jdbcTemplate.update(query,time, movieId, idSalon);
 
@@ -31,7 +28,7 @@ public class ScreeningDao {
         }
     }
        public Screening getScreeningById(String id){
-        String query = "SELECT * FROM screening WHERE idSalon =?";
+        String query = "SELECT * FROM movie.screening WHERE idSalon =?";
 
         Screening screening = jdbcTemplate.queryForObject(query, new RowMapper<Screening>() {
             @Override
@@ -46,19 +43,5 @@ public class ScreeningDao {
 
         return screening;
 
-    }
-
-    public ArrayList<Screening> getAllScreening(){
-        String query = "SELECT * FROM screening";
-        ArrayList<Screening> screenings = new ArrayList<>();
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(query);
-
-        for (Map<String, Object> row : rows){
-            Screening screening = new Screening(String.valueOf(row.get("time")),
-                    (int) row.get("movie_id"),
-                    (int) row.get("idSalon"));
-            screenings.add(screening);
-        }
-        return screenings;
-    }
+}
 }

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+
 @RestController
 public class CustomerController {
     public static JWCustomerHandler jwHandler = new JWCustomerHandler();
@@ -56,12 +58,13 @@ public class CustomerController {
     @GetMapping("/insertCustomer")
     public void insertCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
-        customerService.insertCustomer(firstName, lastName, user_name, password);
+        customerService.addCustomer(firstName, lastName, user_name, password);
     }
 
     @GetMapping("/verifyCustomerUsername")
-    public String verifyUsername(@RequestParam(value = "username") String user_name) {
-        customer = customerService.verifyUsername(user_name);
+    public String verifyUsername(@RequestParam(value = "username") String user_name) throws SQLException {
+        customerService.verifyUsername(user_name);
+
         if(!(customer == null)){
             return "Customer exist";
         } else {

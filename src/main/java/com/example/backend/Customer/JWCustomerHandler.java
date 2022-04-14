@@ -1,7 +1,6 @@
 package com.example.backend.Customer;
 
 import io.jsonwebtoken.*;
-
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.sql.Date;

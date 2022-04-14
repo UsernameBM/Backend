@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+import java.sql.SQLException;
+
 @RestController
 public class ScreeningController {
 
@@ -31,8 +33,11 @@ public class ScreeningController {
 
         Screening screening = new Screening(time, movieId, idSalon);
         return screeningService.insertScreening(screening);
+    }
 
-
+    @GetMapping("/selectMovieTime")
+    void selectMovieTime(@RequestParam(value = "time") String time, @RequestParam(value = "idMovie") int movie_id) throws SQLException {
+        screeningService.selectMovieTime(time, movie_id);
     }
 
     @GetMapping("/getAllScreening")
