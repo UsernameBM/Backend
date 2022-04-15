@@ -22,4 +22,8 @@ public class PersonalScheduleService {
     public void insertPersonalSchedule(String date, int idUser, int idSalon, String Counter, String Kitchen){
         personalScheduleDao.insertPersonalSchedule(date, idUser, idSalon, Counter, Kitchen);
     }
+
+    public void deleteSchedule(int id){
+        personalScheduleDao.deleteSchedule(id);
+    }
 }

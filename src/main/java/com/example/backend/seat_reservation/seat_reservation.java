@@ -7,13 +7,15 @@ public class seat_reservation {
     private int movie_id;
     private int idSalon;
     private int seats_id;
+    private Byte reserved;
 
-    public seat_reservation(int idSeat, String time, int movie_id, int idSalon, int seats_id) {
+    public seat_reservation(int idSeat, String time, int movie_id, int idSalon, int seats_id, Byte reserved) {
         this.idSeat = idSeat;
         this.time = time;
         this.movie_id = movie_id;
         this.idSalon = idSalon;
         this.seats_id = seats_id;
+        this.reserved = reserved;
     }
 
     public int getIdSeat() {
@@ -56,14 +58,23 @@ public class seat_reservation {
         this.seats_id = seats_id;
     }
 
+    public Byte getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(Byte reserved) {
+        this.reserved = reserved;
+    }
+
     @Override
     public String toString() {
         return "seat_reservation{" +
                 "idSeat=" + idSeat +
-                ", time=" + time +
+                ", time='" + time + '\'' +
                 ", movie_id=" + movie_id +
                 ", idSalon=" + idSalon +
                 ", seats_id=" + seats_id +
+                ", reserved=" + reserved +
                 '}';
     }
 }

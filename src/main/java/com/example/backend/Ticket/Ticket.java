@@ -10,8 +10,8 @@ public class Ticket {
     private int idSalon;
     private int seats_id;
 
-    public Ticket(int idTicket, double price, int costumer_id, int idSeat, String time,
-                  int movie_id, int idSalon, int seats_id) {
+
+    public Ticket(int idTicket, double price, int costumer_id, int idSeat, String time, int movie_id, int idSalon, int seats_id) {
         this.idTicket = idTicket;
         this.price = price;
         this.costumer_id = costumer_id;
@@ -20,20 +20,6 @@ public class Ticket {
         this.movie_id = movie_id;
         this.idSalon = idSalon;
         this.seats_id = seats_id;
-    }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "idTicket=" + idTicket +
-                ", price=" + price +
-                ", custumer_id=" + costumer_id +
-                ", idSeat=" + idSeat +
-                ", time='" + time + '\'' +
-                ", movie_id=" + movie_id +
-                ", idSalon=" + idSalon +
-                ", seats_id=" + seats_id +
-                '}';
     }
 
     public int getIdTicket() {
@@ -98,5 +84,19 @@ public class Ticket {
 
     public void setSeats_id(int seats_id) {
         this.seats_id = seats_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "idTicket=" + idTicket +
+                ", price=" + price +
+                ", costumer_id=" + costumer_id +
+                ", idSeat=" + idSeat +
+                ", time='" + time + '\'' +
+                ", movie_id=" + movie_id +
+                ", idSalon=" + idSalon +
+                ", seats_id=" + seats_id +
+                '}';
     }
 }

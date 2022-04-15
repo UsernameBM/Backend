@@ -41,4 +41,13 @@ public class PersonalScheduleDao {
             System.out.println(result + " schedule has been added!");
         }
     }
+
+    public void deleteSchedule(int id){
+        String query = "DELETE FROM personalschedule WHERE id= ?";
+        int result = jdbcTemplate.update(query, id);
+
+        if (result > 0 ){
+            System.out.println(result + " this schedule is deleted");
+        }
+    }
 }

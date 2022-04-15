@@ -12,4 +12,16 @@ public class seat_reservationService {
     public seat_reservation getSeat_reservationByIdSeat(int idSeat){
         return seat_reservation = seat_reservationDAO.getSeat_reservationByidSeat(idSeat);
     }
+
+    public void makeReservation(int idSeat, String time, int movie_id, int idSalon, int seats_id, Byte reserved) {
+        seat_reservationDAO.makeReservation(idSeat, time, movie_id, idSalon, seats_id, reserved);
+    }
+
+    public void updateSeatReservation(int idSeat, String time, int movie_id, int idSalon, int seats_id, Byte reserved) {
+        seat_reservationDAO.updateSeatReservation(idSeat,time,movie_id,idSalon,seats_id,reserved);
+    }
+
+    void makeSeatReservation(int idSeat, Byte reserved) {
+        seat_reservationDAO.makeSeatReservation(idSeat, reserved);
+    }
 }

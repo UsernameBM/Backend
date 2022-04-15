@@ -13,8 +13,8 @@ public class seat_reservationDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public seat_reservation getSeat_reservationByidSeat(int idSeat){
-        String query = "SELECT * FROM seat_reservation WHERE idSeat= ?";
+    public seat_reservation getSeat_reservationByidSeat(int idSeat) {
+        String query = "SELECT * FROM movie.seat_reservation WHERE idSeat= ?";
 
         seat_reservation seat_reservation = jdbcTemplate.queryForObject(query, new RowMapper<seat_reservation>() {
             @Override
@@ -23,10 +23,45 @@ public class seat_reservationDAO {
                         rs.getString("time"),
                         rs.getInt("movie_id"),
                         rs.getInt("idSalon"),
-                        rs.getInt("seats_id"));
+                        rs.getInt("seats_id"),
+                        rs.getByte("reserved"));
                 return set;
             }
         }, idSeat);
         return seat_reservation;
     }
+
+    // Lägg en bokning!
+    public void makeReservation(int idSeat, String time, int movie_id, int idSalon, int seats_id, int reserved) {
+        String query = "INSERT INTO movie.seat_reservation (idSeat, time, movie_id, idSalon, seats_id) VALUES(?,?,?,?,?)";
+
+        int result = jdbcTemplate.update(query, idSeat, time, movie_id, idSalon, seats_id, reserved);
+
+        if (result > 0) {
+            System.out.println(result + " reservation has been added!");
+        }
+    }
+
+    // Uppdatera seat_reservation (vilka platser som är bokade etc)
+    public void updateSeatReservation(int idSeat, String time, int movie_id, int idSalon, int seats_id, int reserved) {
+        String query = "UPDATE movie.seat_reservation SET idSeat = ?, time = ?, movie_id = ?, idSalon =?, seats_id =?, reserved=?";
+
+        int result = jdbcTemplate.update(query, idSeat, time, movie_id, idSalon, seats_id);
+
+        if (result > 0) {
+            System.out.println(result + " reservation has been updated!");
+        }
+    }
+
+    public void makeSeatReservation(int idSeat, int reserved) {
+        String query = "UPDATE movie.seat_reservation SET reserved =? WHERE idSeat =?";
+
+        int result = jdbcTemplate.update(query, idSeat, reserved);
+
+        if (result > 0) {
+            System.out.println(result + " seat have been booked");
+        }
+    }
 }
+
+

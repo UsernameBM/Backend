@@ -13,33 +13,29 @@ public class CustomerController {
     CustomerService customerService;
     Customer customer;
 
-
-
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
     @GetMapping("/getCustomer")
-    public Customer getCustomerByUsernamePassword(@RequestParam(value = "user_name") String user_name)
-                                                   {
+    public Customer getCustomerByUsername(@RequestParam(value = "user_name") String user_name) {
         customer = customerService.getCustomerByUsername(user_name);
         return customer;
     }
 
     @GetMapping("/authorize")    //kollar ifall kund finns i databasen
-    public String authenticateCustomer(@RequestParam(value="username") String username, @RequestParam(value ="password") String password) {
+    public String authenticateCustomer(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Customer c = customerService.getCustomerByUsername(username);
         if (c.getPassword().equals(password)) {
             String token = jwHandler.generateToken(c);
             return "right password";
 
-        }else if (!c.getPassword().equals(password)) {
+        } else if (!c.getPassword().equals(password)) {
             return "wrong password or username";
 
         }
         return "wrong password or username";
     }
-
 
 
     @GetMapping("/hello")
@@ -48,29 +44,43 @@ public class CustomerController {
 
 
     }
+
     @GetMapping("/checkToken")
-    public String checkToken(@RequestParam(value = "token") String token){
+    public String checkToken(@RequestParam(value = "token") String token) {
         return jwHandler.validateToken(token);
     }
 
-    @GetMapping("/insertCustomer")
-    public void insertCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
-                               @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password){
-        customerService.insertCustomer(firstName, lastName, user_name, password);
+    //Funkar ej som planerat
+    @GetMapping("/addCustomer")
+    public Customer addCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
+                                @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
+        customer = customerService.addCustomer(firstName, lastName, user_name, password);
+        return customer;
     }
+
+    @GetMapping("/insertCustomer")
+    public String insertCustomer(@RequestParam(value = "firstname") String firstName, @RequestParam(value = "lastname") String lastName,
+                                 @RequestParam(value = "username") String user_name, @RequestParam(value = "password") String password) {
+        customerService.insertCustomer(firstName, lastName, user_name, password);
+
+        String newCustomer = "Customer has successfully been inserted in DB";
+        System.out.println(newCustomer);
+        return newCustomer;
+    }
+
 
     @GetMapping("/verifyCustomerUsername")
-    public String verifyUsername(@RequestParam(value = "username") String user_name) {
-        customer = customerService.verifyUsername(user_name);
-        if(!(customer == null)){
-            return "Customer exist";
-        } else {
-            return "Customer doesnt exist";
+    public Customer VerifyCustomerByUsername(@RequestParam(value = "user_name") String user_name) {
+        try {
+            customer = customerService.getCustomerByUsername(user_name);
+            if (!(customer == null)) {
+                System.out.println("Customer exist");
+                return customer;
+            }
+        } catch (Exception e) {
+            e.getMessage();
         }
+        System.out.println("Customer dosent exist");
+        return null;
     }
-
-
 }
-
-
-

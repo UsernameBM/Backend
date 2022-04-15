@@ -35,4 +35,28 @@ public class TicketDao {
             return ticket;
 
         }
+
+
+        public void insertTicket(double price, int ticket_amount, int costumer_id, int idSeat, String time, int movie_id, int idSalon, int seats_id){
+            String query = "INSERT INTO ticket (price, ticket_amount, costumer_id, idSeat, time, movie_id, idSalon, seats_id, reserved) VALUES(?,?,?,?,?,?,?,?)";
+
+            int result = jdbcTemplate.update(query, price, ticket_amount, costumer_id, idSeat, time, movie_id, idSalon, seats_id);
+
+            if (result > 0){
+                System.out.println(result + " Ticket has been added!");
+            }
+
+        }
+
+
+        public void deleteTicket(int idTicket){
+            String query = "DELETE FROM ticket WHERE idTicket = ?";
+
+            int result = jdbcTemplate.update(query, idTicket);
+
+            if (result > 0){
+                System.out.println(result + "this ticket is deleted");
+            }
+        }
+
     }

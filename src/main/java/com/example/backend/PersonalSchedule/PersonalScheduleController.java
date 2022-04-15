@@ -31,4 +31,9 @@ public class PersonalScheduleController {
                             @RequestParam(value = "date") String date){
         personalScheduleService.insertPersonalSchedule(date, idSalon, idUser, Counter, Kitchen);
     }
+
+    @GetMapping("/deleteSchedule")
+    public void deleteSchedule(@RequestParam(value = "id", defaultValue = "-1")int id){
+        personalScheduleService.deleteSchedule(id);
+    }
 }
