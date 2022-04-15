@@ -24,12 +24,12 @@ public class PersonalScheduleController {
 
     @GetMapping("/insertPersonalSchedule")
     public void insertPersonalSchedule(
-                            @RequestParam(value = "idSalon", defaultValue = "No Salon")int idSalon,
-                            @RequestParam(value = "idUser", defaultValue = "No User")int idUser,
-                            @RequestParam(value = "Counter")String Counter,
-                            @RequestParam(value = "Kitchen")String Kitchen,
-                            @RequestParam(value = "date") String date){
-        personalScheduleService.insertPersonalSchedule(date, idSalon, idUser, Counter, Kitchen);
+            @RequestParam(value = "idSalon", defaultValue = "No Salon")int idSalon,
+            @RequestParam(value = "idUser", defaultValue = "No User")int idUser,
+            @RequestParam(value = "Counter")String Counter,
+            @RequestParam(value = "Kitchen")String Kitchen,
+            @RequestParam(value = "date") String date){
+        personalScheduleService.insertPersonalSchedule(idSalon, idUser, Counter, Kitchen, date);
     }
 
     @GetMapping("/deleteSchedule")

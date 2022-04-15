@@ -32,10 +32,10 @@ public class PersonalScheduleDao {
         return personalSchedules;
     }
 
-    public void insertPersonalSchedule(String date, int idUser, int idSalon, String Counter, String Kitchen) {
+    public void insertPersonalSchedule(int idSalon, int idUser, String Counter, String Kitchen, String date) {
         String query = "INSERT INTO personalschedule (date, idUser, idSalon, Counter, Kitchen) VALUES(?,?,?,?,?)";
 
-        int result = jdbcTemplate.update(query, date, idUser, idSalon, Counter, Kitchen);
+        int result = jdbcTemplate.update(query, idSalon, idUser, Counter, Kitchen, date);
 
         if (result > 0) {
             System.out.println(result + " schedule has been added!");
