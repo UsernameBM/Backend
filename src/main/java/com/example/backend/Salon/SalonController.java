@@ -24,7 +24,7 @@ public class SalonController {
 
     @GetMapping("/addSalon")
     public String addSalon(@RequestParam(value = "seats") int seats, @RequestParam(value = "row") int row,
-                           @RequestParam(value = "cinemaName") String cinemaName) {
+                           @RequestParam(value = "cinema_name") String cinemaName) {
         int idSalon = 0;
 
         Salon salon = new Salon(idSalon, seats, row, cinemaName);

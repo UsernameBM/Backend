@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+/**
+ * http://localhost:8080/insertPersonalSchedule?idSalon=1&idUser=1&Counter=ja&Kitchen=nej&date=2022-04-29,09:00-15:30
+ *
+ *http://localhost:8080/deleteSchedule?id=1
+ *
+ * http://localhost:8080/getAllPersonalSchedule
+ */
 @RestController
 public class PersonalScheduleController {
 
@@ -29,7 +36,7 @@ public class PersonalScheduleController {
                             @RequestParam(value = "Counter")String Counter,
                             @RequestParam(value = "Kitchen")String Kitchen,
                             @RequestParam(value = "date") String date){
-        personalScheduleService.insertPersonalSchedule(date, idSalon, idUser, Counter, Kitchen);
+        personalScheduleService.insertPersonalSchedule(idSalon, idUser, Counter, Kitchen, date);
     }
 
     @GetMapping("/deleteSchedule")
