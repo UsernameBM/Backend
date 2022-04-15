@@ -9,7 +9,20 @@ Vi börjar med inloggningen
 2 knappar. Att logga in eller registrera sig. Vi har använt oss av tokens så varje gång vi loggar in,
 anropas "/authorize"- metoden(som är kopplat till vår login knapp) med den metoden
 så kommer vi kunna se i vår "customer"-tabell om en kund finns i databasen och matchar värderna som finns
-i kolumnen password & user_name. Samma logik används för personal inloggningen. //behöver skriva mer tror jag
+i kolumnen password & user_name. Samma logik används för personal inloggningen. För att en inloggning ska ske och att
+applikationen byter scen, måste en sträng över 60 (vilket Killian tror att han skrev) returneras. Denna sträng är
+en JWT som programmet skapar när inloggningen är lyckad. För att programmet ska skapa en JWT måste själva
+”användarnamnet” som du skriver i användarnamn fältet finnas med i databasen samt att lösenordet du skriver i lösenord
+fältet finns i databasen i samma row som användarnamnet. När inloggningen är lyckad har en Json web token som håller
+i själva användarnamnet (usernamn) som användaren har skrivit in skapats. Denna token kommer att kunna användas när
+man bokar filmer genom att anropa senRequestWithToken() metoden där du använder alla värden du bockar in från
+frontend vid bokning av filmer som till exempel vilken film, säten tid och salong. När du gör denna bokning från
+frontend kommer sendRequestWithToken() att anropas och i den metoden kommer en endpoint i URL:en
+att anropas tillsammans med dessa värden som du matar in från frontend. I endpointen kommer då en inserBooking() metod
+att anropas där alla argument (värden) som har skickats med endpointen från frontend att skickas med insertBooking()
+metoden tillsammans med den token som håller i användarnamn värdet, på det sättet kan vi se under vilket användarnamn
+bokningen har gjorts. I den metoden kommer en INSERT VALUES query att triggas och bokningen kommer då att lagras i
+databasen.
 
 När vi ska registrera en ny användare så använder vi oss av metoden "/insertCustomer" då i frontend så ska vi få
 5 stycken textfält där man matar in Förnamn, Efternamn, Användarnamn, Lösenord och Upprepa lösenord.
@@ -46,9 +59,9 @@ som finns i DB tabellen, personalschedule, men vi fick samma fel som TableViewn 
 värden från personalschedule-tabellen så anropar vi "/getAllPersonalSchedule"). Man kan även ta bort scheman genom
 använda "/deleteSchedule"-metoden.
 
-Här nere så kan du testa alla metoder:)
 //infoga eran kod här, helst i ordning!
  */
+
 /**
  * Här nere så kan du testa alla metoder:)
  *
@@ -85,5 +98,5 @@ Här nere så kan du testa alla metoder:)
  *
  * Används för att se alla tillgängliga visningar!
  * http://localhost:8080/getAllScreening
- *infoga eran kod här, helst i ordning!
+ *
  */

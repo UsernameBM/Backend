@@ -13,7 +13,7 @@ public class SeatsController {
     @Autowired
     SeatsService seatsService;
 
-    public SeatsController(SeatsService SeatsService){
+    public SeatsController(SeatsService seatsService){
         this.seatsService = seatsService;
     }
 
