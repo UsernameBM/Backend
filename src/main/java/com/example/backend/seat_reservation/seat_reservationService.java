@@ -24,4 +24,9 @@ public class seat_reservationService {
     void makeSeatReservation(int idSeat, Byte reserved) {
         seat_reservationDAO.makeSeatReservation(idSeat, reserved);
     }
+
+    public void insertBooking(String userName, int idseat, String time, int movieId, int idSalon, int seatsId) {
+        seat_reservationDAO.insertBooking(userName, idseat,time,movieId,idSalon,seatsId);
+
+    }
 }

@@ -22,11 +22,10 @@ public class JWCustomerHandler {
 
         String jwToken = Jwts.builder()
                 .claim("username", customer.getUser_name())
-                .claim("password", customer.getPassword())
-                .setSubject(String.valueOf(customer.getId()))
+                .setSubject(String.valueOf(customer.getUser_name()))
                 .setId(UUID.randomUUID().toString())
                 .setIssuedAt(Date.from(now))
-                .setExpiration(Date.from(now.plus(1l, ChronoUnit.MINUTES)))
+                .setExpiration(Date.from(now.plus(1L, ChronoUnit.MINUTES)))
                 .signWith(getKey())
                 .compact();
 
@@ -42,8 +41,6 @@ public class JWCustomerHandler {
                     .parseClaimsJws(token);
 
             s = jwt.getBody().getSubject();
-        } catch (ExpiredJwtException e){
-            s = "Token expired";
         } catch (Exception e){
             s = "invalid token";
         }
@@ -57,4 +54,3 @@ public class JWCustomerHandler {
         return hmacKey;
     }
 }
-

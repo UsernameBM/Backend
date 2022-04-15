@@ -13,6 +13,17 @@ public class seat_reservationDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public void insertBooking(String user_name, int idSeat, String time, int movie_id, int idSalon, int seats_id) {
+
+        String query = "INSERT INTO screening (user_name, idSeat, time, movie_id, idSalon, seats_id) VALUES(?,?,?,?,?,?)";
+
+        int result = jdbcTemplate.update(query, user_name, idSeat, time, movie_id, idSalon, seats_id);
+
+        if (result > 0) {
+            System.out.println(result + "a booking has been added to the database");
+        }
+    }
+
     public seat_reservation getSeat_reservationByidSeat(int idSeat) {
         String query = "SELECT * FROM movie.seat_reservation WHERE idSeat= ?";
 

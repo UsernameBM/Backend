@@ -1,9 +1,14 @@
 package com.example.backend.Customer;
 
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext;
+import net.bytebuddy.description.annotation.AnnotationSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.IncorrectResultSetColumnCountException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletRequest;
+import java.sql.ResultSet;
 
 @RestController
 public class CustomerController {
@@ -12,6 +17,9 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
     Customer customer;
+
+    @Autowired
+    HttpServletRequest request;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
@@ -26,15 +34,18 @@ public class CustomerController {
     @GetMapping("/authorize")    //kollar ifall kund finns i databasen
     public String authenticateCustomer(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Customer c = customerService.getCustomerByUsername(username);
+
         if (c.getPassword().equals(password)) {
             String token = jwHandler.generateToken(c);
-            return "right password";
-
+            return token;
         } else if (!c.getPassword().equals(password)) {
-            return "wrong password or username";
+            return "wrong";
 
-        }
-        return "wrong password or username";
+        } else if (c.getPassword() == null || c.getUser_name() == null) {
+
+            return "wrong";
+        } else
+            return "wrong";
     }
 
 
@@ -46,8 +57,15 @@ public class CustomerController {
     }
 
     @GetMapping("/checkToken")
-    public String checkToken(@RequestParam(value = "token") String token) {
+    public String checkToken(@RequestParam(value = "token") String token){
         return jwHandler.validateToken(token);
+    }
+
+    private String extractToken(){
+        String bearer = request.getHeader("Autorization");
+        String onlyToken = bearer.substring(6);
+        return onlyToken;
+
     }
 
     //Funkar ej som planerat
