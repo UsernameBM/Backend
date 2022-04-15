@@ -82,6 +82,20 @@ public class CustomerDao {
         return customer;
     }
 
+    public void updateCustomer(String firstName, String lastName, String user_name, String password, int id){
+        String query = "UPDATE customer SET firstName =?, lastname =?, user_name =?, password =? WHERE (id =?)";
+
+        int result = jdbcTemplate.update(query, firstName, lastName, user_name, password);
+
+        if(result > 0){
+            System.out.println(result + " customer has been updated!");
+        }
+    }
+
+
+
+
+
 }
 
 

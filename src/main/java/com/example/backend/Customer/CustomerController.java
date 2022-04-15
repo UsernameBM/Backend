@@ -101,4 +101,13 @@ public class CustomerController {
         System.out.println("Customer dosent exist");
         return null;
     }
+
+    @GetMapping("/updateCustomer")
+    public void updateCustomer(@RequestParam(value = "firstName") String firstName,
+                               @RequestParam(value = "lastName") String lastName,
+                               @RequestParam(value = "user_name")String user_name,
+                               @RequestParam(value = "password")String password,
+                               @RequestParam(value = "id")int id){
+        customerService.updateCustomer(firstName, lastName, user_name, password, id);
+    }
 }

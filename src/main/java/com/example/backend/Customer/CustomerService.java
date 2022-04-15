@@ -30,4 +30,8 @@ public class CustomerService {
     public void insertCustomer(String firstname, String lastname, String user_name, String password){
         customerDao.insertCustomer(firstname, lastname, user_name, password);
     }
+
+    public void updateCustomer(String firstName, String lastName, String user_name, String password, int id){
+        customerDao.updateCustomer(firstName,lastName, user_name, password, id);
+    }
 }

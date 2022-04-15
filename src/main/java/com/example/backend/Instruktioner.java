@@ -25,4 +25,28 @@ står "Användare har registrerats. Gå tillbaka för att logga in!".
 När man lyckas att logga in som costumer så kommer vi hamna i customer sidan där man har tillgång till
 3 tabs "Vår biograf", "Boka biljett" och "Mina Sidor". I "Vår biograf"-delen så ska det visa alla filmer som finns
 tillgängliga att kolla på. Tanken var att ha en TableView (JavaFX) som skulle visa alla filmer som fanns i databasen
+med hjälp av vår endpoint "/getAllMovieById" (den ska egentligen heta "/getAllMovie") som då anropar alla värden som
+finns i movie-tabellen (MySQL) i en ArrayList. Sen har vi "Boka biljett"-delen, där man ska kunna välja film, boka
+plats/platser, välja datum och pris. Det gör vi med endpoint "/insertTicket". Till sist har vi "Mina sidor", där
+customern som har loggat in kan se sina personliga uppgifter med hjälp av "/getCustomer"-metoden med hjälp från
+Web tokens. Man kan även uppdatera sina personliga uppgifter med "/updateCustomer" samt så kan man radera sin biljett
+med hjälp av "/deleteTicket".
+
+Ifall man loggar in som personal i personal-inloggningen så hamnar vi vid "admin-sidan" där man har tillgång till
+"Filmvisningar", "Lägg till/ta bort filmer", "Lägg till ny personal", "Mina sidor" och tillslut "schema". I filmvisning
+så ska man både kunna se och göra filmvisningar genom att använda 2 olika endpoints. Den första är "/addScreening" där
+man fyller i parametrarna till vilken salong, film och datum för att sedan kunna se det i TableView (JavaFX). Men för
+att kunna visa värderna som finns i tabellen så anropar vi "/getAllScreening" (här uppstod det problem). Sen har vi
+"Lägg till/ta bort filmer"- delen där vi kan infoga in filmer i databasen med hjälp av "/insertMovie" och även kunna
+ta bort filmer med metoden "/deleteMovie". Efter det så kommer vi till "Lägg till ny personal"-delen som liknar mycket
+"registering"-delen i customer-delen (vi använder inprincip samma logik här). "Mina sidor"-delen(personal) är också
+nästan som customers "Mina sidor", så vi använder samma logik där. "Schema"-delen så hade vi tänkt att använda
+metoden "/insertSchedule" för att kunna infoga scheman. Vi har även en TableView (JavaFX) som ska visa värderna
+som finns i DB tabellen, personalschedule, men vi fick samma fel som TableViewn i "Filmvisningar". (För att få alla
+värden från personalschedule-tabellen så anropar vi "/getAllPersonalSchedule"). Man kan även ta bort scheman genom
+använda "/deleteSchedule"-metoden.
+
+Här nere så kan du testa alla metoder:)
+
+//infoga eran kod här, helst i ordning!
  */
