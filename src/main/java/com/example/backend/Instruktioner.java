@@ -47,6 +47,43 @@ värden från personalschedule-tabellen så anropar vi "/getAllPersonalSchedule"
 använda "/deleteSchedule"-metoden.
 
 Här nere så kan du testa alla metoder:)
-
 //infoga eran kod här, helst i ordning!
+ */
+/**
+ * Här nere så kan du testa alla metoder:)
+ *
+ * PERSONALSCHEDULE:
+ * ________________________________________________________________________________________
+ * Används för lägga till schema för personal i databasen!
+ *
+ * http://localhost:8080/insertPersonalSchedule?idSalon=1&idUser=1&Counter=ja&Kitchen=nej&date=2022-04-29,09:00-15:30
+ *
+ * Används för att ta bort schema för personal!
+ *http://localhost:8080/deleteSchedule?id=1
+ *
+ * Används för att visa alla schema som finns i databasen!
+ * http://localhost:8080/getAllPersonalSchedule
+ *
+ * SALON:
+ * ________________________________________________________________________________________
+ * Används för att lägga till en Sal i databasen!
+ * http://localhost:8080/addSalon?seats=80&row=5&cinema_name=kista
+ *
+ * Används för att se hur många platser/rader en specifik sal har på en bio!
+ * http://localhost:8080/requestSalon?id=1
+ *
+ * Används för att se alla existerande salar
+ * http://localhost:8080/getAllSalons
+ *
+ * SCREENING:
+ * _________________________________________________________________
+ * Används för att lägga till en visning i databasen!
+ * http://localhost:8080/addScreening?time=17:00&movieId=1&idSalon=1
+ *
+ * Används för att se en specifik visning från databasen!
+ * http://localhost:8080/requestScreening?id=1
+ *
+ * Används för att se alla tillgängliga visningar!
+ * http://localhost:8080/getAllScreening
+ *infoga eran kod här, helst i ordning!
  */
